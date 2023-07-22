@@ -153,6 +153,11 @@ app.delete("/recados/:id", function (requisicao, resposta) {
     }
 });
 
+// Rota de Bem-vindo
+app.get("/", function (requisicao, resposta) {
+    resposta.send("Bem-vindo à nossa aplicação no web service!");
+});
+
 app.listen(3000, function () {
     console.log("servidor rodando na porta 3000: url http://localhost:3000");
 });
