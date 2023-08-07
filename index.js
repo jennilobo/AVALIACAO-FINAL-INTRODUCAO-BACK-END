@@ -1,7 +1,9 @@
 import express from "express";
-
+const cors = require("cors"); // Importando o módulo "cors"
 const app = express();
+
 app.use(express.json());
+app.use(cors()); // Habilitando o suporte CORS
 
 const usuarios = [];
 let identificadorUnicoUsuario = 0;
