@@ -60,6 +60,12 @@ app.post("/usuarios/login", function (requisicao, resposta) {
     }
 });
 
+
+app.get("/usuarios", function (requisicao, resposta) {
+    resposta.json(usuarios);
+});
+
+
 //CRIAR RECADOS
 app.post("/recados", function (requisicao, resposta) {
     const bodyInvalido =
