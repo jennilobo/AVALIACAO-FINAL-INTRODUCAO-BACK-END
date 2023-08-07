@@ -60,7 +60,7 @@ app.post("/usuarios/login", function (requisicao, resposta) {
     }
 });
 
-
+//USUARIOS CADASTRADOS
 app.get("/usuarios", function (requisicao, resposta) {
     resposta.json(usuarios);
 });
