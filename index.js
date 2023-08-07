@@ -1,5 +1,5 @@
 import express from "express";
-const cors = require("cors"); // Importando o módulo "cors"
+import cors from "cors";
 const app = express();
 
 app.use(express.json());
