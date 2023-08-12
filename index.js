@@ -4,12 +4,55 @@ const app = express();
 
 app.use(express.json());
 app.use(cors()); // Habilitando o suporte CORS
-
-const usuarios = [];
 let identificadorUnicoUsuario = 0;
-
-const recados = [];
 let identificadorUnicoRecado = 0;
+const usuarios = [
+    {
+            nome: "Jennifer",
+            senha: "123",
+            email: "jenni@gmail.com",
+            identificador: identificadorUnicoUsuario++
+    }
+];
+
+
+const recados = [
+    {
+        titulo: "recado 1",
+        descricao: "descrição 1",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 2",
+        descricao: "descrição 2",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 3",
+        descricao: "descrição 3",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 4",
+        descricao: "descrição 4",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    }, {
+        titulo: "recado 5",
+        descricao: "descrição 5",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    }, {
+        titulo: "recado 6",
+        descricao: "descrição 6",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    }
+];
+
 
 //CRIAR USUÁRIOS
 app.post("/usuarios", function (requisicao, resposta) {
@@ -103,16 +146,22 @@ app.post("/recados", function (requisicao, resposta) {
     }
 });
 
-// LISTAR TODOS OS RECADOS DE UM USUÁRIO
+//LISTAR TODOS OS RECADOS DE UM USUÁRIO
 app.get("/recados/:usuarioId", function (requisicao, resposta) {
     const usuarioId = parseInt(requisicao.params.usuarioId);
     const recadosDoUsuario = recados.filter(function (recado) {
         return recado.usuarioId === usuarioId;
     });
 
+    const pageSize = 2; // Tamanho máximo de recados por página
+    const page = parseInt(requisicao.query.page || 1);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const recadosPaginados = recadosDoUsuario.slice(startIndex, endIndex);
+
     resposta.json({
         quantidade: recadosDoUsuario.length,
-        recados: recadosDoUsuario,
+        recados: recadosPaginados,
     });
 });
 
