@@ -12,6 +12,12 @@ const usuarios = [
             senha: "123",
             email: "jenni@gmail.com",
             identificador: identificadorUnicoUsuario++
+    },
+    {
+        nome: "Paulo",
+            senha: "456",
+            email: "paulo@gmail.com",
+            identificador: identificadorUnicoUsuario++
     }
 ];
 
@@ -49,6 +55,37 @@ const recados = [
         titulo: "recado 6",
         descricao: "descrição 6",
         usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
+    },
+
+
+    {
+        titulo: "recado 1 paulo",
+        descricao: "descrição 1 paulo",
+        usuarioId: 1,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 2 paulo",
+        descricao: "descrição 2 paulo",
+        usuarioId: 1,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 3 paulo",
+        descricao: "descrição 3 paulo",
+        usuarioId: 1,
+        identificador: identificadorUnicoRecado ++
+    },
+    {
+        titulo: "recado 4 paulo",
+        descricao: "descrição 4 paulo",
+        usuarioId: 1,
+        identificador: identificadorUnicoRecado ++
+    }, {
+        titulo: "recado 5 paulo",
+        descricao: "descrição 5 paulo",
+        usuarioId: 1,
         identificador: identificadorUnicoRecado ++
     }
 ];
