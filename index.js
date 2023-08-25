@@ -248,7 +248,7 @@ app.delete("/recados/:id", function (requisicao, resposta) {
 });
 
 // RECUPERAR RECADOS EXCLUÍDOS
-app.get("/recados/excluidos", function (requisicao, resposta) {
+app.get("/recados/:id", function (requisicao, resposta) {
     const recadosExcluidos = loadRecadosExcluidosFromStorage(); // Função a ser implementada para carregar os recados excluídos
 
     resposta.json(recadosExcluidos);
