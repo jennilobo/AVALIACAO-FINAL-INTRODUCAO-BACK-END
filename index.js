@@ -247,6 +247,19 @@ app.delete("/recados/:id", function (requisicao, resposta) {
     }
 });
 
+// RECUPERAR RECADOS EXCLUÍDOS
+app.get("/recados/excluidos", function (requisicao, resposta) {
+    const recadosExcluidos = loadRecadosExcluidosFromStorage(); // Função a ser implementada para carregar os recados excluídos
+
+    resposta.json(recadosExcluidos);
+});
+
+// Função para carregar os recados excluídos do armazenamento local
+function loadRecadosExcluidosFromStorage() {
+    const recadosExcluidos = localStorage.getItem("recadosExcluidos");
+    return recadosExcluidos ? JSON.parse(recadosExcluidos) : [];
+}
+
 // Rota de Bem-vindo
 app.get("/", function (requisicao, resposta) {
     resposta.send("Bem-vindo à nossa aplicação no web service!");
