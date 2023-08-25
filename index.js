@@ -90,6 +90,7 @@ const recados = [
     }
 ];
 
+let recadosExcluidos = [];
 
 //CRIAR USUÁRIOS
 app.post("/usuarios", function (requisicao, resposta) {
@@ -247,18 +248,19 @@ app.delete("/recados/:id", function (requisicao, resposta) {
     }
 });
 
-// RECUPERAR RECADOS EXCLUÍDOS
-app.get("/recados/:id", function (requisicao, resposta) {
-    const recadosExcluidos = loadRecadosExcluidosFromStorage(); // Função a ser implementada para carregar os recados excluídos
-
-    resposta.json(recadosExcluidos);
-});
-
-// Função para carregar os recados excluídos do armazenamento local
-function loadRecadosExcluidosFromStorage() {
-    const recadosExcluidos = localStorage.getItem("recadosExcluidos");
-    return recadosExcluidos ? JSON.parse(recadosExcluidos) : [];
-}
+app.put('/recados/:id/restaurar', (req, res) => {
+    const recadoId = req.params.id;
+    
+    // Verificar se o recado está na lista de recados excluídos
+    const index = recadosExcluidos.indexOf(recadoId);
+    if (index !== -1) {
+      // Remover o recado da lista de excluídos
+      recadosExcluidos.splice(index, 1);
+      res.status(200).json({ message: 'Recado restaurado com sucesso.' });
+    } else {
+      res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
+    }
+  });
 
 // Rota de Bem-vindo
 app.get("/", function (requisicao, resposta) {
