@@ -90,8 +90,6 @@ const recados = [
     }
 ];
 
-let recadosExcluidos = [];
-
 //CRIAR USUÁRIOS
 app.post("/usuarios", function (requisicao, resposta) {
     const bodyInvalido =
