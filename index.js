@@ -6,6 +6,7 @@ app.use(express.json());
 app.use(cors()); // Habilitando o suporte CORS
 let identificadorUnicoUsuario = 0;
 let identificadorUnicoRecado = 0;
+let recadosExcluidos = []; // Inicialmente, não há recados excluídos
 const usuarios = [
     {
             nome: "Jennifer",
@@ -240,14 +241,15 @@ app.delete("/recados/:id", function (requisicao, resposta) {
         resposta.send("Recado não encontrado");
     } else {
         recados.splice(indice, 1);
+        recadosExcluidos.push(id); // Adicionar o ID à lista de recados excluídos
         resposta.json({
             mensagem: "Recado removido com sucesso",
         });
     }
 });
 
-app.put('/recados/:id/restaurar', (req, res) => {
-    const recadoId = req.params.id;
+  app.put('/recados/:id/restaurar', (req, res) => {
+    const recadoId = parseInt(req.params.id);
     
     // Verificar se o recado está na lista de recados excluídos
     const index = recadosExcluidos.indexOf(recadoId);
@@ -258,7 +260,7 @@ app.put('/recados/:id/restaurar', (req, res) => {
     } else {
       res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
     }
-  });
+});
 
 // Rota de Bem-vindo
 app.get("/", function (requisicao, resposta) {
