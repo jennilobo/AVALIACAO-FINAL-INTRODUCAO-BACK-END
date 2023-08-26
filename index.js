@@ -22,6 +22,8 @@ const usuarios = [
     }
 ];
 
+const recadosExcluidosPorUsuario = {};
+
 
 const recados = [
     {
@@ -245,8 +247,14 @@ app.delete("/recados/:id", function (requisicao, resposta) {
         resposta.status(404);
         resposta.send("Recado não encontrado");
     } else {
+        const usuarioId = /* Obtenha o ID do usuário atual */;
+        
+        if (!recadosExcluidosPorUsuario[usuarioId]) {
+            recadosExcluidosPorUsuario[usuarioId] = [];
+        }
+        
         recados.splice(indice, 1);
-        recadosExcluidos.push(id); // Adicionar o ID à lista de recados excluídos
+        recadosExcluidosPorUsuario[usuarioId].push(id); // Adicionar o ID à lista de recados excluídos do usuário
         resposta.json({
             mensagem: "Recado removido com sucesso",
         });
@@ -257,14 +265,17 @@ app.put('/recados/:usuarioId/:id/restaurar', (req, res) => {
     const usuarioId = req.params.usuarioId;
     const recadoId = parseInt(req.params.id);
 
-    // Verificar se o recado está na lista de recados excluídos do usuário
-    const index = recadosExcluidos[usuarioId].indexOf(recadoId);
-    if (index !== -1) {
-        // Remover o recado da lista de excluídos do usuário
-        recadosExcluidos[usuarioId].splice(index, 1);
-        res.status(200).json({ message: 'Recado restaurado com sucesso.' });
+    if (recadosExcluidosPorUsuario[usuarioId]) {
+        const index = recadosExcluidosPorUsuario[usuarioId].indexOf(recadoId);
+        if (index !== -1) {
+            // Remover o recado da lista de excluídos do usuário
+            recadosExcluidosPorUsuario[usuarioId].splice(index, 1);
+            res.status(200).json({ message: 'Recado restaurado com sucesso.' });
+        } else {
+            res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
+        }
     } else {
-        res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
+        res.status(404).json({ error: 'Recados excluídos não encontrados para o usuário.' });
     }
 });
 
