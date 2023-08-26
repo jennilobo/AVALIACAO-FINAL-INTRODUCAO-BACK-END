@@ -27,44 +27,39 @@ const recadosExcluidosPorUsuario = {};
 
 const recados = [
     {
-        titulo: "recado 1",
-        descricao: "descrição 1",
+        titulo: "Meeting reminder",
+        descricao: "Remind everyone about the team meeting tomorrow at 10 am in the conference room.",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
     },
     {
-        titulo: "recado 2",
-        descricao: "descrição 2",
+        titulo: "Reading suggestion",
+        descricao: "I recommend everyone to read the new article on web development best practices.",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
     },
     {
-        titulo: "recado 3",
-        descricao: "descrição 3",
+        titulo: "System update",
+        descricao: "The system will be updated on Friday night, so check it out to save yourself some trouble.",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
     },
     {
-        titulo: "recado 4",
-        descricao: "descrição 4",
+        titulo: "Customer feedback",
+        descricao: "We received great feedback from customers on the latest design. Congratulations to all of you!",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
     }, {
-        titulo: "recado 5",
-        descricao: "descrição 5",
+        titulo: "Surprise birthday!",
+        descricao: "We're getting together on Friday to celebrate Paulo's birthday. Bring something to share!",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
     }, {
-        titulo: "recado 6",
-        descricao: "descrição 6",
+        titulo: "Thanks to all",
+        descricao: "I want to thank everyone for their hard work on the project. We managed to overcome the challenges together.",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
-    }, {
-        titulo: "recado 7",
-        descricao: "descrição 7",
-        usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
-    },
+    }, 
 
 
     {
