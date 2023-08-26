@@ -9,16 +9,16 @@ let identificadorUnicoRecado = 0;
 let recadosExcluidos = []; // Inicialmente, não há recados excluídos
 const usuarios = [
     {
-            nome: "Jennifer",
-            senha: "123",
-            email: "jenni@gmail.com",
-            identificador: identificadorUnicoUsuario++
+        nome: "Jennifer",
+        senha: "123",
+        email: "jenni@gmail.com",
+        identificador: identificadorUnicoUsuario++
     },
     {
         nome: "Paulo",
-            senha: "456",
-            email: "paulo@gmail.com",
-            identificador: identificadorUnicoUsuario++
+        senha: "456",
+        email: "paulo@gmail.com",
+        identificador: identificadorUnicoUsuario++
     }
 ];
 
@@ -30,66 +30,66 @@ const recados = [
         titulo: "Meeting reminder",
         descricao: "Remind everyone about the team meeting tomorrow at 10 am in the conference room.",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "Reading suggestion",
         descricao: "I recommend everyone to read the new article on web development best practices.",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "System update",
         descricao: "The system will be updated on Friday night, so check it out to save yourself some trouble.",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "Customer feedback",
         descricao: "We received great feedback from customers on the latest design. Congratulations to all of you!",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     }, {
         titulo: "Surprise birthday!",
         descricao: "We're getting together on Friday to celebrate Paulo's birthday. Bring something to share!",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     }, {
         titulo: "Thanks to all",
         descricao: "I want to thank everyone for their hard work on the project. We managed to overcome the challenges together.",
         usuarioId: 0,
-        identificador: identificadorUnicoRecado ++
-    }, 
+        identificador: identificadorUnicoRecado++
+    },
 
 
     {
         titulo: "recado 1 paulo",
         descricao: "descrição 1 paulo",
         usuarioId: 1,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "recado 2 paulo",
         descricao: "descrição 2 paulo",
         usuarioId: 1,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "recado 3 paulo",
         descricao: "descrição 3 paulo",
         usuarioId: 1,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     },
     {
         titulo: "recado 4 paulo",
         descricao: "descrição 4 paulo",
         usuarioId: 1,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     }, {
         titulo: "recado 5 paulo",
         descricao: "descrição 5 paulo",
         usuarioId: 1,
-        identificador: identificadorUnicoRecado ++
+        identificador: identificadorUnicoRecado++
     }
 ];
 
@@ -215,7 +215,7 @@ app.put("/recados/:id", function (requisicao, resposta) {
         resposta.status(404);
         resposta.send("Recado não encontrado");
     } else {
-        const bodyInvalido = 
+        const bodyInvalido =
             !requisicao.body.titulo || !requisicao.body.descricao;
         if (bodyInvalido) {
             resposta.status(400);
@@ -238,23 +238,17 @@ app.delete("/recados/:id", function (requisicao, resposta) {
         return recado.identificador === id;
     });
 
-    if (indice === -1) {
-        resposta.status(404);
-        resposta.send("Recado não encontrado");
-    } else {
-        const usuarioId = /* Obtenha o ID do usuário atual */;
-        
-        if (!recadosExcluidosPorUsuario[usuarioId]) {
-            recadosExcluidosPorUsuario[usuarioId] = [];
-        }
-        
-        recados.splice(indice, 1);
-        recadosExcluidosPorUsuario[usuarioId].push(id); // Adicionar o ID à lista de recados excluídos do usuário
-        resposta.json({
-            mensagem: "Recado removido com sucesso",
-        });
+    if (!recadosExcluidosPorUsuario[usuarioId]) {
+        recadosExcluidosPorUsuario[usuarioId] = [];
     }
-});
+
+    recados.splice(indice, 1);
+    recadosExcluidosPorUsuario[usuarioId].push(id); // Adicionar o ID à lista de recados excluídos do usuário
+    resposta.json({
+        mensagem: "Recado removido com sucesso",
+    });
+}
+);
 
 app.put('/recados/:usuarioId/:id/restaurar', (req, res) => {
     const usuarioId = req.params.usuarioId;
