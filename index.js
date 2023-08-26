@@ -57,6 +57,11 @@ const recados = [
         descricao: "descrição 6",
         usuarioId: 0,
         identificador: identificadorUnicoRecado ++
+    }, {
+        titulo: "recado 7",
+        descricao: "descrição 7",
+        usuarioId: 0,
+        identificador: identificadorUnicoRecado ++
     },
 
 
@@ -248,7 +253,7 @@ app.delete("/recados/:id", function (requisicao, resposta) {
     }
 });
 
-  app.put('/recados/:id/restaurar', (req, res) => {
+  app.put('/recados/:usuarioId/:id/restaurar', (req, res) => {
     const recadoId = parseInt(req.params.id);
     
     // Verificar se o recado está na lista de recados excluídos
