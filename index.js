@@ -253,19 +253,21 @@ app.delete("/recados/:id", function (requisicao, resposta) {
     }
 });
 
-  app.put('/recados/:usuarioId/:id/restaurar', (req, res) => {
+app.put('/recados/:usuarioId/:id/restaurar', (req, res) => {
+    const usuarioId = req.params.usuarioId;
     const recadoId = parseInt(req.params.id);
-    
-    // Verificar se o recado está na lista de recados excluídos
-    const index = recadosExcluidos.indexOf(recadoId);
+
+    // Verificar se o recado está na lista de recados excluídos do usuário
+    const index = recadosExcluidos[usuarioId].indexOf(recadoId);
     if (index !== -1) {
-      // Remover o recado da lista de excluídos
-      recadosExcluidos.splice(index, 1);
-      res.status(200).json({ message: 'Recado restaurado com sucesso.' });
+        // Remover o recado da lista de excluídos do usuário
+        recadosExcluidos[usuarioId].splice(index, 1);
+        res.status(200).json({ message: 'Recado restaurado com sucesso.' });
     } else {
-      res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
+        res.status(404).json({ error: 'Recado não encontrado na lista de excluídos.' });
     }
 });
+
 
 // Rota de Bem-vindo
 app.get("/", function (requisicao, resposta) {
