@@ -56,7 +56,7 @@ const recados = [
         identificador: identificadorUnicoRecado++
     }, {
         titulo: "Thanks to all",
-        descricao: "I want to thank everyone for their hard work on the project. We managed to overcome the challenges together. I want to thank everyone for their hard work on the project. We managed to overcome the challenges together.",
+        descricao: "I want to thank everyone for their hard work on the project. We managed to overcome the challenges together. I want to thank everyone for their hard work on the project. We managed to overcome the challenges together. I want to thank everyone for their hard work on the project. We managed to overcome the challenges together. I want to thank everyone for their hard work on the project. We managed to overcome the challenges together.",
         usuarioId: 0,
         identificador: identificadorUnicoRecado++
     },
